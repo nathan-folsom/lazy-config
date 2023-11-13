@@ -58,5 +58,16 @@ local handlers = {
       root_dir = require("lspconfig.util").root_pattern(".git"),
     })
   end,
+  ["eslint"] = function()
+    local lspconfig = require("lspconfig")
+    lspconfig.eslint.setup({
+      on_attach = function(_, bufnr)
+        vim.api.nvim_create_autocmd("BufWritePre", {
+          buffer = bufnr,
+          command = "EslintFixAll",
+        })
+      end,
+    })
+  end,
 }
 require("mason-lspconfig").setup_handlers(handlers)
