@@ -1,9 +1,9 @@
 return {
-  { "sainnhe/everforest" },
+  { "loctvl842/monokai-pro.nvim" },
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "everforest",
+      colorscheme = "monokai-pro",
     },
   },
 }
