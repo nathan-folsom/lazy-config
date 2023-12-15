@@ -6,7 +6,8 @@ return {
         return {
           FloatBorder = { fg = c.base.dimmed3, bg = "NONE" },
           FloatTitle = { fg = c.base.dark },
-          Comment = { fg = c.base.dimmed1 },
+          Comment = { fg = c.base.dimmed2 },
+          NeoTreeNormal = { fg = c.base.white },
         }
       end,
     },
