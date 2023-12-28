@@ -56,12 +56,13 @@ local handlers = {
   end,
   -- todo: figure out cssls in js files/styled components
   -- https://www.reddit.com/r/neovim/comments/14t57c5/styled_components_plugin/
-  ["tsserver"] = function()
-    local lspconfig = require("lspconfig")
-    lspconfig.tsserver.setup({
-      root_dir = require("lspconfig.util").root_pattern(".git"),
-    })
-  end,
+  -- Disabling this to try out typescript-tools
+  --   ["tsserver"] = function()
+  --     local lspconfig = require("lspconfig")
+  --     lspconfig.tsserver.setup({
+  --       root_dir = require("lspconfig.util").root_pattern(".git"),
+  --     })
+  --   end,
   ["eslint"] = function()
     local lspconfig = require("lspconfig")
     lspconfig.eslint.setup({
