@@ -5,7 +5,7 @@ return {
     opts = {
       scroll = {
         animate = {
-          duration = 2,
+          duration = { step = 10, total = 70 },
         },
       },
     },
