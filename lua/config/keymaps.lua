@@ -7,3 +7,14 @@ local Util = require("lazyvim.util")
 vim.keymap.set("n", "<C-/>", function()
   Util.terminal(nil, { border = "rounded", title = "Terminal", title_pos = "center" })
 end, { desc = "Term with border" })
+
+-- lazygit
+-- Swap keymaps, I pretty much always use the cwd version
+if vim.fn.executable("lazygit") == 1 then
+  vim.keymap.set("n", "<leader>gG", function()
+    Snacks.lazygit({ cwd = LazyVim.root.git() })
+  end, { desc = "Lazygit (Root Dir)" })
+  vim.keymap.set("n", "<leader>gg", function()
+    Snacks.lazygit()
+  end, { desc = "Lazygit (cwd)" })
+end
