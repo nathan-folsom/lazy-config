@@ -1,7 +1,5 @@
 {
-  "extras": [
-    "lazyvim.plugins.extras.coding.luasnip"
-  ],
+  "extras": [],
   "news": {
     "NEWS.md": "10960"
   },
