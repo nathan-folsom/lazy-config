@@ -15,6 +15,15 @@ return {
           adapter = "anthropic",
         },
       },
+      adapters = {
+        anthropic = function()
+          return require("codecompanion.adapters").extend("anthropic", {
+            env = {
+              api_key = "cmd:cat ~/.config/anthropic/api-key",
+            },
+          })
+        end,
+      },
     },
   },
 }
