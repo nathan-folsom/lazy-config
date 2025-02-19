@@ -28,7 +28,7 @@ return {
             name = "local_llama33",
             url = "${url}/",
             env = {
-              url = "http://localhost:8000",
+              url = "http://nate.local:8000",
             },
             schema = {
               model = {
