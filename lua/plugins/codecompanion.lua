@@ -9,10 +9,10 @@ return {
     opts = {
       strategies = {
         chat = {
-          adapter = "anthropic",
+          adapter = "local_llama33",
         },
         inline = {
-          adapter = "anthropic",
+          adapter = "local_llama33",
         },
       },
       adapters = {
@@ -20,6 +20,20 @@ return {
           return require("codecompanion.adapters").extend("anthropic", {
             env = {
               api_key = "cmd:cat ~/.config/anthropic/api-key",
+            },
+          })
+        end,
+        local_llama33 = function()
+          return require("codecompanion.adapters").extend("ollama", {
+            name = "local_llama33",
+            url = "${url}/",
+            env = {
+              url = "http://localhost:8000",
+            },
+            schema = {
+              model = {
+                default = "default",
+              },
             },
           })
         end,
