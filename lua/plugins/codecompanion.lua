@@ -26,6 +26,7 @@ return {
         local_llama33 = function()
           return require("codecompanion.adapters").extend("ollama", {
             name = "local_llama33",
+            formatted_name = "Local",
             url = "${url}/",
             env = {
               url = "http://nate.local:8000",
