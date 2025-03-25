@@ -29,7 +29,7 @@ return {
             formatted_name = "Local",
             url = "${url}/",
             env = {
-              url = "http://nate.local:8000",
+              url = "http://nate.ai:8000",
             },
             schema = {
               model = {
