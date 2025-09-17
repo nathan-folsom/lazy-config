@@ -48,20 +48,3 @@ require("lazy").setup({
     },
   },
 })
-
--- Lsp customization from :h mason-lspconfig.setup_handlers()
-local handlers = {
-  function(server_name)
-    require("lspconfig")[server_name].setup({})
-  end,
-  -- todo: figure out cssls in js files/styled components
-  -- https://www.reddit.com/r/neovim/comments/14t57c5/styled_components_plugin/
-  -- Disabling this to try out typescript-tools
-  --   ["tsserver"] = function()
-  --     local lspconfig = require("lspconfig")
-  --     lspconfig.tsserver.setup({
-  --       root_dir = require("lspconfig.util").root_pattern(".git"),
-  --     })
-  --   end,
-}
-require("mason-lspconfig").setup_handlers(handlers)
