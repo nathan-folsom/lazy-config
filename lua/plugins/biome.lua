@@ -14,6 +14,14 @@ return {
               client.stop(true)
             end
           end)
+          vim.api.nvim_create_autocmd("BufWritePre", {
+            callback = function()
+              vim.lsp.buf.code_action({
+                context = { only = { "source.fixAll.biome" } },
+                apply = true,
+              })
+            end,
+          })
         end,
       },
     },
