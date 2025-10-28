@@ -5,7 +5,7 @@ return {
       servers = { biome = {} },
       setup = {
         biome = function()
-          require("lazyvim.util").lsp.on_attach(function(client)
+          Snacks.util.lsp.on(function(buf, client)
             if client.name == "biome" then
               client.server_capabilities.documentFormattingProvider = true
             elseif client.name == "typescript-tools" then
