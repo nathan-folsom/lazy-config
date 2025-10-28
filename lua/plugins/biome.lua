@@ -11,7 +11,7 @@ return {
             elseif client.name == "typescript-tools" then
               client.server_capabilities.documentFormattingProvider = false
             elseif client.name == "eslint" then
-              client.stop(true)
+              client:stop(true)
             end
           end)
           vim.api.nvim_create_autocmd("BufWritePre", {
