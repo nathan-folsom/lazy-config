@@ -2,10 +2,10 @@
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
 
-local Util = require("lazyvim.util")
+local Snacks = require("snacks")
 
 vim.keymap.set("n", "<C-/>", function()
-  Util.terminal(nil, { border = "rounded", title = "Terminal", title_pos = "center" })
+  Snacks.terminal(nil, { border = "rounded", title = "Terminal", title_pos = "center" })
 end, { desc = "Term with border" })
 
 -- lazygit
