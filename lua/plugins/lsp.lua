@@ -13,7 +13,22 @@ return {
         },
       },
       flow = { enabled = true },
-      sourcekit = { enabled = true }
+      sourcekit = {
+        enabled = true,
+        capabilities = {
+          workspace = {
+            didChangeWatchedFiles = {
+              dynamicRegistration = true,
+            },
+          },
+          textDocument = {
+            diagnostic = {
+              dynamicRegistration = true,
+              relatedDocumentSupport = true,
+            },
+          },
+        },
+      },
     },
   },
 }
