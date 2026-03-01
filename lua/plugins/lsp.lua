@@ -13,6 +13,7 @@ return {
         },
       },
       flow = { enabled = true },
+      sourcekit = { enabled = true }
     },
   },
 }
