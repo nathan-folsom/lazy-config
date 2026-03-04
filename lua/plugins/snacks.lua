@@ -3,6 +3,17 @@ return {
     "folke/snacks.nvim",
     ---@type snacks.Config
     opts = {
+      lazygit = {
+        -- Override nvim-remote preset edit commands to use --remote instead of
+        -- --remote-tab, so files open in the current buffer rather than a new tab.
+        config = {
+          os = {
+            edit = '[ -z "$NVIM" ] && (nvim -- {{filename}}) || (nvim --server "$NVIM" --remote-send "q" && nvim --server "$NVIM" --remote {{filename}})',
+            editAtLine = '[ -z "$NVIM" ] && (nvim +{{line}} -- {{filename}}) || (nvim --server "$NVIM" --remote-send "q" && nvim --server "$NVIM" --remote {{filename}} && nvim --server "$NVIM" --remote-send ":{{line}}<CR>")',
+            openDirInEditor = '[ -z "$NVIM" ] && (nvim -- {{dir}}) || (nvim --server "$NVIM" --remote-send "q" && nvim --server "$NVIM" --remote {{dir}})',
+          },
+        },
+      },
       scroll = {
         animate = {
           duration = { step = 10, total = 70 },
