@@ -4,6 +4,10 @@ return {
     ---@type snacks.Config
     opts = {
       lazygit = {
+        win = {
+          min_width = 160,
+          min_height = 60,
+        },
         -- Override nvim-remote preset edit commands to use --remote instead of
         -- --remote-tab, so files open in the current buffer rather than a new tab.
         config = {
