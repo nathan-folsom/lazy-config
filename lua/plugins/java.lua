@@ -7,6 +7,13 @@
 local JDTLS_JDK = "/opt/homebrew/opt/openjdk@21/libexec/openjdk.jdk/Contents/Home"
 local DEFAULT_JDK = "/Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home"
 
+-- Gradle major version -> JDK major version its daemon runs on. Gradle 7 refuses
+-- JDK 20+; Gradle 9 repos here need 25 (their com.rhombus.version 4.x plugin says so).
+-- Deliberately explicit rather than "newest installed", so an unrelated `brew install
+-- openjdk` can't hand a build a JDK its Gradle doesn't support yet.
+local GRADLE_DAEMON_JDK = { [7] = 17, [8] = 17, [9] = 25 }
+local FALLBACK_DAEMON_JDK = 17
+
 -- Discover installed JDKs as { major = path }, newest wins per major version.
 local function installed_jdks()
   local jdks = {}
@@ -47,21 +54,13 @@ local function wrapper_gradle_major(root_dir)
   return tonumber(contents:match("gradle%-(%d+)%.[%d.]*%-?%a*%.zip"))
 end
 
--- Which JDK should run the Gradle daemon for this repo?
+-- Which JDK should run the Gradle daemon for this repo? Repos without a wrapper use
+-- the `gradle` on PATH, so they follow the fallback.
 local function gradle_jdk(root_dir)
   local jdks = installed_jdks()
-  local major = root_dir and wrapper_gradle_major(root_dir)
-  -- Gradle 7.x refuses JDK 20+; Gradle 9 builds here need the newest JDK around.
-  if major and major >= 9 then
-    local newest = 0
-    for version, _ in pairs(jdks) do
-      newest = math.max(newest, version)
-    end
-    if newest > 0 then
-      return jdks[newest]
-    end
-  end
-  return jdks[17] or DEFAULT_JDK
+  local gradle_major = root_dir and wrapper_gradle_major(root_dir)
+  local jdk_major = gradle_major and GRADLE_DAEMON_JDK[gradle_major] or FALLBACK_DAEMON_JDK
+  return jdks[jdk_major] or jdks[FALLBACK_DAEMON_JDK] or DEFAULT_JDK
 end
 
 return {
